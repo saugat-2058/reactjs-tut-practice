@@ -7,6 +7,9 @@ export default function Textform(props) {
     let result = text.toUpperCase();
     setText(result);
     props.showalert("Converted to Uppercase","success")
+    setTimeout(() => {
+      props.alert(null)
+    }, 2000);
   };
   //convert to the lowercase function
   const handleLOclick = () => {
@@ -14,6 +17,9 @@ export default function Textform(props) {
     let result = text.toLowerCase();
     setText(result);
     props.showalert("Converted to Lowercase","success")
+    setTimeout(() => {
+      props.alert(null)
+    }, 2000);
   };
   //Removing tghe extra space function
   const handleSPclick = () => {
@@ -27,22 +33,31 @@ export default function Textform(props) {
     }
     setText(final);
     props.showalert("Extra Space Removed","success")
+    setTimeout(() => {
+      props.alert(null)
+    }, 2000);
   };
   //clear text
   const handleCLRclick = () => {
     setText("");
     props.showalert("Text Cleared","success")
+    setTimeout(() => {
+      props.alert(null)
+    }, 2000);
   };
   //copy  text
   const handleCopy = () => {
     navigator.clipboard.writeText(text);
+    setTimeout(() => {
+      props.alert(null)
+    }, 2000);
     props.showalert("Text Copied to clipboard","success")
   };
 
   //counting the number of words in the tect function
   const counts = () => {
     var count = 0;
-    var split = text.split(" ");
+    var split = text.split(/\s+/);
     for (var i = 0; i < split.length; i++) {
       if (split[i] !== "") {
         count++;
@@ -102,9 +117,9 @@ export default function Textform(props) {
   return (
     <>
       <div>
-        <div className="mb-3">
+        <div className="mb-3 my-5">
           <h5 style={{color:props.mode==='light'?'black':'white'}}>{props.heading}</h5>
-          <textarea  style={{backgroundColor:props.mode==='light'?'white':'grey',color:props.mode==='light'?'black':'white',styles}} 
+          <textarea  style={{backgroundColor:props.mode==='light'?'white':'#154388',color:props.mode==='light'?'black':'white',styles}} 
             className="form-control"
             id="exampleFormControlTextarea1"
             rows="5"
@@ -112,28 +127,28 @@ export default function Textform(props) {
             value={text}
           ></textarea>
         </div>
-        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2`} onClick={handleUPclick}>
+        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2 my-1`} onClick={handleUPclick}>
           Convert To UpperCase
         </button>
-        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2`} onClick={handleLOclick}>
+        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2 my-1`} onClick={handleLOclick}>
           Convert To LowerCase
         </button>
-        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2`} onClick={handleSPclick}>
+        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2 my-1`} onClick={handleSPclick}>
           Remove Extra Space
         </button>
-        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2`} onClick={handleCopy}>
+        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2 my-1`} onClick={handleCopy}>
           CopyText
         </button>
-        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2`} onClick={handleDECfont}>
+        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2 my-1`} onClick={handleDECfont}>
           Decrease Font size
         </button>
-        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2`} onClick={handleINCfont}>
+        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2 my-1`} onClick={handleINCfont}>
           Increase Font size
         </button>
-        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2`} onClick={handleBoldfont}>
+        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2 my-1`} onClick={handleBoldfont}>
           {bold}
         </button>
-        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2`} onClick={handleCLRclick}>
+        <button className={`btn btn-${props.mode==='light'?'primary':'warning'} mx-2 my-1`} onClick={handleCLRclick}>
           ClearText
         </button>
         {/* <button className="btn btn-primary ml-2" onClick={handleUPclick}>Convert To UpperCase</button> */}

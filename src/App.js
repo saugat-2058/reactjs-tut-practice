@@ -9,8 +9,7 @@ import Alert from './components/Alert';
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 function App() {
@@ -19,6 +18,8 @@ function App() {
   // const obj = {title:"TextUtils",aboutText:"About TextUtils",change:7}
   const [Mode, setMode] = useState('light')
   const [alert, setAlert] = useState(null)
+  // document.getElementById('height').style.height="50px";
+
 
 const showalert = (message,type)=>{
   setAlert({
@@ -33,7 +34,7 @@ const home =()=>{
     // console.log('object')
     if(Mode==="light"){
       setMode("dark")
-      document.body.style.backgroundColor="grey";
+      document.body.style.backgroundColor="#063370";
       showalert("dark mode has been enabled","success")
       setTimeout(() => {
         setAlert(null)
@@ -59,22 +60,51 @@ const home =()=>{
       document.title="TextUtils - LightMode";
       
     }
+    if(Mystyle.color==='white'){
+      SetMystyle({
+          color:'black',
+          backgroundColor:'white'
+      })
+  
+  }else{
+      SetMystyle({
+          color:'white',
+          backgroundColor:'#154388'
+      })
+    
+  }
     
   }
   const AboutTitle =()=>{
     document.title="TextUtils - About";
 
   }
+
+// ABout 
+const [Mystyle,SetMystyle]=useState({
+  color:'black',
+  backgroundColor:'white'
+});
+
+
+// const DM=()=>{
+//   console.log("hello")
+
+// }
+
   return (
   <>
   <Router>
 {/* way to pass the number is inside the curly braces and string inside the inverted commmas */}
 <Navbar title="TextUtils" home={home} abouts={AboutTitle} aboutText="About TextUtils" mode={Mode} togglemode={toggleMode}  />
+
 <Alert alert={alert}/>
-<div className='container my-3'>
+
+
+<div className='container'>
 <Routes>
-  <Route exact path='/about' element={<About/>}/>
-  <Route exact path='/' element={<Textform showalert={showalert} heading="Enter a text to analyze" mode={Mode}/>}/>
+  <Route exact path='/about' element={<About  Mystyle={Mystyle}/>}/>
+  <Route exact path='/' element={<Textform showalert={showalert} alert={setAlert} heading="Enter a text to analyze" mode={Mode}/>}/>
 </Routes>
   </div>
 {/* passing props as the objects */}
